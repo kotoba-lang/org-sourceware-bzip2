@@ -1,0 +1,15 @@
+{:paths ["src"]
+ :deps {}
+ :aliases {:test {:extra-paths ["test"]
+                  :extra-deps {io.github.cognitect-labs/test-runner
+                               {:git/tag "v0.5.1" :git/sha "dfb30dd"}
+                               ;; test-only: proves a real `.tar.bz2` that system
+                               ;; tar can extract. `src/` has no dependencies.
+                               io.github.kotoba-lang/org-ieee-tar
+                               {:git/sha "74a207fb0838bca3e24a011f8622a7ca34b2a562"}}
+                  :main-opts ["-m" "cognitect.test-runner"]}
+           :local {:override-deps {io.github.kotoba-lang/org-ieee-tar
+                                   {:local/root "../org-ieee-tar"}}}
+           :lint {:replace-deps {clj-kondo/clj-kondo {:mvn/version "2024.11.14"}}
+                  :main-opts ["-m" "clj-kondo.main" "--lint" "src" "test"
+                              "--fail-level" "error"]}}}
