@@ -11,7 +11,7 @@
    so a fixture file can never record something the reference itself rejects."
   (:require ["node:child_process" :as cp]
             ["node:fs" :as fs]
-            [clojure.string :as str]))
+            [kotoba.lang.text :as str]))
 
 (defn- ascii [s] (mapv #(.charCodeAt % 0) (seq s)))
 
