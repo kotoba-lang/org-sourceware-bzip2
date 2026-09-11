@@ -11,11 +11,11 @@ bzip2, both directions, portable `.cljc`, zero dependencies.
   encoder is checked by `bunzip2 -t` as well as by `bunzip2 -c`. An encoder that
   only agrees with its own decoder passes nothing.
 - **`test/bzip2/fixtures.cljk` is generated.** Regenerate with
-  `nbb tools/record_fixtures.cljk`, which round-trips every stream through
+  `kbb --backend sci tools/record_fixtures.cljk`, which round-trips every stream through
   `bunzip2` before writing and refuses otherwise.
 - **Unsigned byte vectors in the API**, on both runtimes.
 - **Every failure is an `ex-info` with a `:reason`.**
-- **Both runtimes are gated** (`clojure -M:test`, `nbb run-tests.cljk`).
+- **Both runtimes are gated** (`kbb -M:test`, `kbb --backend sci run-tests.cljk`).
 
 ## Traps
 
