@@ -74,7 +74,7 @@ faster on the JVM. Compressing hundreds of megabytes is not what this is for.
 ```sh
 clojure -M:test          # JVM: portable suite + conformance against bzip2/bunzip2
 clojure -M:local:test    # ...with sibling checkouts
-nbb run-tests.cljs       # ClojureScript: the portable suite, recorded fixtures
+nbb run-tests.cljk       # ClojureScript: the portable suite, recorded fixtures
 clojure -M:lint
 ```
 
@@ -83,7 +83,7 @@ ClojureScript asserts real conformance rather than self-consistency. Regenerate
 them with:
 
 ```sh
-nbb tools/record_fixtures.cljs   # verifies each stream through bunzip2 before writing
+nbb tools/record_fixtures.cljk   # verifies each stream through bunzip2 before writing
 ```
 
 ## Not supported

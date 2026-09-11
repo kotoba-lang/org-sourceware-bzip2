@@ -5,17 +5,17 @@ bzip2, both directions, portable `.cljc`, zero dependencies.
 ## Invariants
 
 - **No host codec in `src/`.** No `java.util.zip`, no node stream, no shelling
-  out. The `bzip2`/`bunzip2` binaries appear in `test/bzip2/bzip2_oracle_test.clj`
-  and `tools/record_fixtures.cljs` only.
+  out. The `bzip2`/`bunzip2` binaries appear in `test/bzip2/bzip2_oracle_test.cljk`
+  and `tools/record_fixtures.cljk` only.
 - **Both directions are conformance-tested against the reference**, and the
   encoder is checked by `bunzip2 -t` as well as by `bunzip2 -c`. An encoder that
   only agrees with its own decoder passes nothing.
-- **`test/bzip2/fixtures.cljc` is generated.** Regenerate with
-  `nbb tools/record_fixtures.cljs`, which round-trips every stream through
+- **`test/bzip2/fixtures.cljk` is generated.** Regenerate with
+  `nbb tools/record_fixtures.cljk`, which round-trips every stream through
   `bunzip2` before writing and refuses otherwise.
 - **Unsigned byte vectors in the API**, on both runtimes.
 - **Every failure is an `ex-info` with a `:reason`.**
-- **Both runtimes are gated** (`clojure -M:test`, `nbb run-tests.cljs`).
+- **Both runtimes are gated** (`clojure -M:test`, `nbb run-tests.cljk`).
 
 ## Traps
 
@@ -26,7 +26,7 @@ bzip2, both directions, portable `.cljc`, zero dependencies.
 - **The rank packing in `bwt/forward` requires every rank below `n`.** Seeding it
   with raw byte values silently mis-sorts any block shorter than 256 bytes whose
   values are spread out; the block then fails its own CRC on the way back. That
-  bug was real — `test/bzip2/bzip2_test.cljc` keeps the case
+  bug was real — `test/bzip2/bzip2_test.cljk` keeps the case
   (`short-with-spread-values`) that caught it.
 - **Rotations, not suffixes.** For a block whose end repeats its beginning the
   orders differ and only the rotation order round-trips.
@@ -51,4 +51,4 @@ bzip2, both directions, portable `.cljc`, zero dependencies.
 | `bzip2.bwt` | inverse (O(n)) and forward (prefix doubling) transform |
 | `bzip2.decode` | symbol map, selectors, RLE2, RLE1, blocks, concatenated streams |
 | `bzip2.encode` | RLE1 grouping and block splitting, MTF/RLE2, table assignment, emission |
-| `tools/record_fixtures.cljs` | regenerates the recorded reference streams |
+| `tools/record_fixtures.cljk` | regenerates the recorded reference streams |
