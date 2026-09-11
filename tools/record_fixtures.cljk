@@ -1,7 +1,7 @@
 (ns record-fixtures
   "Regenerate test/bzip2/fixtures.cljk by driving the reference `bzip2` binary.
 
-       nbb tools/record_fixtures.cljk
+       kbb --backend sci tools/record_fixtures.cljk
 
    The portable suite must be able to assert conformance against real reference
    output on ClojureScript, where there is no shell and no filesystem. So the
