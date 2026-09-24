@@ -11,7 +11,7 @@
    Skipped loudly when the reference tools are missing."
   (:require [clojure.java.io :as io]
             [clojure.java.shell :as shell]
-            [clojure.test :refer [deftest is testing]]
+            [kotoba.test :refer [deftest is testing]]
             [bzip2.core :as bzip2]
             [tar.core :as tar])
   (:import [java.io File]

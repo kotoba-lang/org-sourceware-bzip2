@@ -13,7 +13,7 @@
             [bzip2.crc :as crc]
             [bzip2.fixtures :as fixtures]
             [bzip2.huffman :as huff]
-            #?(:clj  [clojure.test :refer [deftest is testing]]
+            #?(:clj  [kotoba.test :refer [deftest is testing]]
                :cljs [cljs.test :refer [deftest is testing]])))
 
 (defn- b64->bytes [s]
