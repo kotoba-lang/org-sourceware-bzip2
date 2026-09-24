@@ -9,13 +9,12 @@
    pass a whole suite by agreeing with its own decoder.
 
    Skipped loudly when the reference tools are missing."
-  (:require [clojure.java.io :as io]
+  (:require [kotoba.io :as kio] [clojure.java.io :as io]
             [clojure.java.shell :as shell]
             [kotoba.test :refer [deftest is testing]]
             [bzip2.core :as bzip2]
             [tar.core :as tar])
-  (:import [java.io File]
-           [java.nio.file Files]))
+  (:import [java.io File]))
 
 (defn- have-tools? []
   (try (and (zero? (:exit (shell/sh "bash" "-c" "command -v bzip2")))
@@ -142,8 +141,8 @@
   ;; stacked. `tar -xjf` shells out to bzip2 itself.
   (if-not (and (have-tools?) (zero? (:exit (shell/sh "bash" "-c" "command -v tar"))))
     (println "SKIP bzip2.bzip2-oracle-test: tar or bzip2 not available")
-    (let [dir (.toFile (Files/createTempDirectory
-                        "org-sourceware-bzip2-" (make-array java.nio.file.attribute.FileAttribute 0)))
+    (let [dir (kio/temp-dir
+                        "org-sourceware-bzip2-")
           hello (mapv int "hello from a portable bzip2\n")
           big (vec (mapcat identity (repeat 300 (mapv int "a line of a larger file\n"))))
           archive (tar/build [{:name "hello.txt" :bytes hello}
