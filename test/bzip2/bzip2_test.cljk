@@ -7,7 +7,7 @@
    let ClojureScript assert the same thing the JVM does. The oracle suite adds
    what a recording cannot: our *output* fed back to the reference, swept across
    every level."
-  (:require [bzip2.bits :as bits]
+  (:require [kotoba.bytes :as kbytes] [bzip2.bits :as bits]
             [bzip2.bwt :as bwt]
             [bzip2.core :as bzip2]
             [bzip2.crc :as crc]
@@ -18,7 +18,7 @@
 
 (defn- b64->bytes [s]
   #?(:clj (mapv #(bit-and (int %) 0xff)
-                (.decode (java.util.Base64/getDecoder) ^String s))
+                (kbytes/base64-decode-bytes ^String s))
      :cljs (let [d (js/atob s)]
              (mapv #(.charCodeAt d %) (range (.-length d))))))
 
