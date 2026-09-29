@@ -1,4 +1,4 @@
-# CLAUDE.md — org-sourceware-bzip2
+# AGENTS.md — org-sourceware-bzip2
 
 bzip2, both directions, portable `.cljc`, zero dependencies.
 
